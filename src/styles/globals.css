@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: hsl(0, 0%, 98%);
+  }
+  .dark {
+    @apply h-full;
+    background: hsl(207, 26%, 17%);
+  }
+}
+
+#nprogress .spinner {
+  display: none !important;
+}
+
+@layer utilities {
+  .light-bg {
+    background: #fafafa;
+  }
+
+  .dark-bg {
+    background: hsl(207, 26%, 17%);
+  }
+
+  .light-element {
+    background-color: white;
+  }
+
+  button:active {
+    transform: scale(0.9);
+  }
+
+  .light-text {
+    color: hsl(200, 15%, 8%);
+  }
+
+  .dark-text {
+    color: white;
+  }
+
+  .light-input {
+    background-color: hsl(0, 0%, 52%);
+  }
+
+  .dark-element {
+    background-color: hsl(209, 23%, 22%);
+  }
+}

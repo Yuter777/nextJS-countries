@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import React, { memo } from "react";
 
 const Card = memo(function ({
@@ -29,18 +28,18 @@ const Card = memo(function ({
     <Link
       href={to}
       tabIndex={0}
-      className=" dark:dark-element light-element w-full rounded-sm shadow-gray-200 drop-shadow-md
+      className="dark:dark-element light-element w-full rounded-sm shadow-gray-200 drop-shadow-md
        transition-transform duration-200 hover:-translate-y-2 active:scale-95 dark:shadow-gray-700 sm:w-72"
     >
-      <div className=" relative h-64 w-full sm:h-40 sm:w-72">
+      <div className="relative h-64 w-full sm:h-40 sm:w-72">
         <Image
           src={flag.src}
           alt={flag.alt || "image"}
           fill
           sizes="(max-width: 640px) 100%, 
-              (max-width: 3000px) 288px,"
+              (max-width: 3000px) 288px"
           style={{ objectFit: "cover" }}
-          className=" h-auto w-auto rounded-t-sm "
+          className="h-auto w-auto rounded-t-sm"
         />
       </div>
 

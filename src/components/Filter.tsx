@@ -1,3 +1,5 @@
+"use client";
+
 import React, { MouseEventHandler } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useState } from "react";

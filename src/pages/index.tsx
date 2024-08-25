@@ -1,3 +1,5 @@
+"use client";
+
 import { matchSorter } from "match-sorter";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";

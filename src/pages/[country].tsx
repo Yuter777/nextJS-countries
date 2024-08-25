@@ -1,5 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import { MdOutlineWest } from "react-icons/md";
@@ -112,7 +113,7 @@ function Country({
           </Button>
 
           <div className="relative  w-full     py-10">
-            <img
+            <Image
               src={countryData.flags.png}
               alt={countryData.flags.alt}
               className="max-h-[400px] w-full max-w-[700px] bg-cover  "

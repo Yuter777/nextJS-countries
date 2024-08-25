@@ -56,5 +56,5 @@ const Card = memo(function ({
     </Link>
   );
 });
-
+Card.displayName = "Card";
 export default Card;

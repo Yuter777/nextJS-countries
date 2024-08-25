@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
+import { decode } from "html-entities"; // HTML entitiyalardan foydalanish uchun import
 
 const Card = memo(function ({
   to,
@@ -44,12 +45,12 @@ const Card = memo(function ({
       </div>
 
       <div className="p-5">
-        <p className="text-2xl font-semibold">{name}</p>
+        <p className="text-2xl font-semibold">{decode(name)}</p>
 
         <div className="mt-2">
           <p>Population: {stringifiedPopulation}</p>
-          <p>Region: {region}</p>
-          <p>Capital: {capital}</p>
+          <p>Region: {decode(region)}</p>
+          <p>Capital: {decode(capital)}</p>
         </div>
       </div>
     </Link>

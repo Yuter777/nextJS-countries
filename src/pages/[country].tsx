@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import { MdOutlineWest } from "react-icons/md";
+import { decode } from "html-entities"; // HTML entitiyalardan foydalanish uchun import
 
 function Country({
   countryData,
@@ -25,7 +26,7 @@ function Country({
           const {
             name: { common },
           } = await res.json();
-          setBorders((prevBorders) => [...prevBorders, common]);
+          setBorders((prevBorders) => [...prevBorders, decode(common)]); // HTML entitiyalardan foydalanish
         } catch (error) {
           console.error(`Failed to fetch border country: ${border}`, error);
         }
@@ -36,19 +37,23 @@ function Country({
 
   function getNativeName() {
     const nativeNames = Object.values(countryData.name.nativeName);
-    return nativeNames.length > 0 ? nativeNames[0].common : "No native name";
+    return nativeNames.length > 0
+      ? decode(nativeNames[0].common)
+      : "No native name";
   }
 
   function getCurrency() {
     const currencies = Object.values(countryData.currencies);
-    return currencies.length > 0 ? currencies[0].name : "No currency";
+    return currencies.length > 0 ? decode(currencies[0].name) : "No currency";
   }
 
   function getLanguages() {
     const languages = Object.values(countryData.languages);
     return languages.map((language, index) => (
       <p key={index} className="mr-1">
-        {index < languages.length - 1 ? "," : ""}
+        {index < languages.length - 1
+          ? decode(language.common) + ","
+          : decode(language.common)}
       </p>
     ));
   }
@@ -91,10 +96,12 @@ function Country({
   return (
     <>
       <Head>
-        <title>{countryData.name.common}</title>
+        <title>{decode(countryData.name.common)}</title>
         <meta
           name="description"
-          content={`A handful of information about the country ${countryData.name.common}.`}
+          content={`A handful of information about the country ${decode(
+            countryData.name.common
+          )}.`}
         />
       </Head>
 
@@ -128,7 +135,7 @@ function Country({
 
         <div className="w-full lg:w-3/5 xl:w-2/5">
           <p className="pb-6 text-4xl font-semibold md:mb-4 lg:mt-20">
-            {countryData.name.common}
+            {decode(countryData.name.common)}
           </p>
 
           <div className="flex flex-col justify-between sm:flex-row">
@@ -142,12 +149,14 @@ function Country({
               <Statistic title="Capital">
                 {countryData.capital.length === 0
                   ? "No capital"
-                  : countryData.capital}
+                  : decode(countryData.capital)}
               </Statistic>
 
               <Statistic title="Population">{getPopulation()}</Statistic>
-              <Statistic title="Region">{countryData.region}</Statistic>
-              <Statistic title="Sub Region">{countryData.subregion}</Statistic>
+              <Statistic title="Region">{decode(countryData.region)}</Statistic>
+              <Statistic title="Sub Region">
+                {decode(countryData.subregion)}
+              </Statistic>
             </div>
 
             <div className="my-10 md:my-0">
@@ -170,7 +179,7 @@ function Country({
                     key={index}
                     onClick={() => router.push(`/countries/${border}`)}
                   >
-                    {border}
+                    {decode(border)}
                   </Button>
                 ))}
               </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { memo } from "react";
+import { memo } from "react";
 
 const Card = memo(function ({
   to,
